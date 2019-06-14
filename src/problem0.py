@@ -310,7 +310,7 @@ def problem0c(circle, n, window):
     x = circle.center.x + (radius * 2)
     y = circle.center.y
 
-    for k in range(n):
+    for _ in range(n):
         center = rg.Point(x, y)
         circle1 = rg.Circle(center, radius)
         circle1.attach_to(window)
