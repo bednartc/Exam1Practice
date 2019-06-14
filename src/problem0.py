@@ -8,8 +8,8 @@ These problems illustrate concepts that previous problems have not emphasized:
   -- animation (Problem 0c)
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Travis Bednarek.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -146,7 +146,7 @@ def problem0a(n):
            since (2 + 4 + 6) is 12, which is NOT odd.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # Done: 2. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################
@@ -164,6 +164,10 @@ def problem0a(n):
     #        ASK FOR HELP if you do not understand this hint.
     # ------------------------------------------------------------------
 
+    if sum_of_digits(n) % 2 == 0:
+        return False
+    else:
+        return True
 
 def run_test_problem0b():
     """ Tests the   problem0b   function. """
@@ -218,7 +222,7 @@ def problem0b(n):
            since there are 46 primes between 2 and 200.
      """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # done: 3. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################
@@ -228,6 +232,11 @@ def problem0b(n):
     ####################################################################
     # ------------------------------------------------------------------
 
+    counter = 0
+    for k in range(n - 1):
+        if is_prime(k + 2) == True:
+            counter = counter + 1
+    return counter
 
 def run_test_problem0c():
     """ Tests the   problem0c  function. """
@@ -286,7 +295,7 @@ def problem0c(circle, n, window):
       :type window: rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # Done: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################
@@ -294,6 +303,19 @@ def problem0c(circle, n, window):
     #   renders with a half-second pause after rendering.
     ####################################################################
     # ------------------------------------------------------------------
+
+    circle.attach_to(window)
+
+    radius = circle.radius
+    x = circle.center.x + (radius * 2)
+    y = circle.center.y
+
+    for k in range(n):
+        center = rg.Point(x, y)
+        circle1 = rg.Circle(center, radius)
+        circle1.attach_to(window)
+        window.render(0.5)
+        x = x + (2 * radius)
 
 
 # ----------------------------------------------------------------------
