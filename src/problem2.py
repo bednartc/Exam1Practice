@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 2.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Travis Bednarek.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -102,7 +102,7 @@ def problem2a(circle, rectangle, window):
       :type window:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # Done: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -110,6 +110,44 @@ def problem2a(circle, rectangle, window):
     #    DIFFICULTY:      6
     #    TIME ESTIMATE:   10 to 15 minutes.
     # ------------------------------------------------------------------
+
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.get_next_mouse_click()
+
+    corner1 = rectangle.corner_1
+    corner2 = rectangle.corner_2
+
+    if corner1.x > corner2.x:
+        x1 = corner1.x
+        x2 = corner2.x
+    else:
+        x1 = corner2.x
+        x2 = corner1.x
+    if corner1.y > corner2.y:
+        y1 = corner1.y
+        y2 = corner2.y
+    else:
+        y1 = corner2.y
+        y2 = corner1.y
+
+    up_right = rg.Point(x2, y1)
+    bot_left = rg.Point(x1, y2)
+
+    line = rg.Line(up_right, bot_left)
+    line.arrow = 'first'
+    line.attach_to(window)
+
+    window.render()
+    window.get_next_mouse_click()
+
+    circle.fill_color = rectangle.outline_color
+    circle.attach_to(window)
+    window.render()
+
+
+
 
 def run_test_problem2b():
     """ Tests the  problem2b   function. """
@@ -182,7 +220,32 @@ def problem2b(rect, n, delta, win):
     #    TIME ESTIMATE:   15 to 25 minutes.
     # ------------------------------------------------------------------
 
+    rect.attach_to(win)
+    x1 = rect.corner_1.x
+    x2 = rect.corner_2.x
+    y1 = rect.corner_1.y
+    y2 = rect.corner_2.y
 
+    for _ in range(n):
+        if x1 > x2:
+            x1 = x1 + delta
+            x2 = x2 - delta
+        else:
+            x1 = x1 - delta
+            x2 = x2 + delta
+
+        if y1 > y2:
+            y1 = y1 + delta
+            y2 = y2 - delta
+        else:
+            y1 = y1 - delta
+            y2 = y2 + delta
+        corner1 = rg.Point(x2, y1)
+        corner2 = rg.Point(x1, y2)
+        rect = rg.Rectangle(corner1, corner2)
+        rect.attach_to(win)
+
+    win.render()
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
