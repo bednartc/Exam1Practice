@@ -126,13 +126,13 @@ def run_test_problem1a():
     # Below this comment, add 2 more test cases of your own choosing.
     # ------------------------------------------------------------------
 
-    expected = 1.278  # This is APPROXIMATELY the correct answer.
+    expected = 1.135  # This is APPROXIMATELY the correct answer.
     answer = problem1a(1, 2)
     print()
     print('Test 3 expected:', expected, '(approximately)')
     print('       actual:  ', answer)
 
-    expected = 1.278  # This is APPROXIMATELY the correct answer.
+    expected = -1.950  # This is APPROXIMATELY the correct answer.
     answer = problem1a(2, 5)
     print()
     print('Test 4 expected:', expected, '(approximately)')
@@ -156,7 +156,7 @@ def problem1a(m, n):
       -- If m is 30 and n is 100, the correct answer is about 1.278.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # Done: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -167,15 +167,15 @@ def problem1a(m, n):
 
     x = (n ** 2) - (m ** 2)
     sin_sum = 0
-    for k in range(x - 1):
-        sin_sum = sin_sum + math.sin(m + k)
+    for k in range(x + 1):
+        sin_sum = sin_sum + math.sin(m ** 2 + k)
 
     return sin_sum
 
 def run_test_problem1b():
     """ Tests the   problem1b   function. """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement this TEST function.
+    # Done: 4. Implement this TEST function.
     #   It TESTS the  problem1b  function defined below.
     #   Include at least **   4   ** tests.
     # ------------------------------------------------------------------
@@ -189,6 +189,29 @@ def run_test_problem1b():
     print('Testing the   problem1b   function:')
     print('--------------------------------------------------')
 
+    expected = 5
+    answer = problem1b(3, 5)
+    print()
+    print('Test 1 expected:', expected)
+    print('       actual:  ', answer)
+
+    expected = 1
+    answer = problem1b(2, 1)
+    print()
+    print('Test 2 expected:', expected)
+    print('       actual:  ', answer)
+
+    expected = 44
+    answer = problem1b(5, 40)
+    print()
+    print('Test 1 expected:', expected)
+    print('       actual:  ', answer)
+
+    expected = 7
+    answer = problem1b(3, 7)
+    print()
+    print('Test 1 expected:', expected)
+    print('       actual:  ', answer)
 
 def problem1b(m, f):
     """
@@ -207,7 +230,7 @@ def problem1b(m, f):
            since there are 44 primes between 5 and 200.
      """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # Done: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     ####################################################################
@@ -221,6 +244,12 @@ def problem1b(m, f):
     #    TIME ESTIMATE:   10 to 15 minutes.
     # ------------------------------------------------------------------
 
+    x = (f * m)
+    counter = 0
+    for k in range (x - 1):
+        if is_prime(m + k):
+            counter = counter + 1
+    return counter
 
 def run_test_problem1c():
     """ Tests the   problem1c   function. """
@@ -304,7 +333,7 @@ def problem1c(n):
            and the sum of the digits in 223092870 is 33.
     """
     # ------------------------------------------------------------------
-    # TODO: 6. Implement and test this function.
+    # Done: 6. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################
@@ -318,6 +347,14 @@ def problem1c(n):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 20 minutes.
     # ------------------------------------------------------------------
+
+    x = 1
+    for k in range(n):
+        if is_prime(k + 1):
+            x = x * (k + 1)
+
+    sum_digit = sum_of_digits(x)
+    return sum_digit
 
 
 # ----------------------------------------------------------------------
